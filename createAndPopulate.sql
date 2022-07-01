@@ -19,6 +19,7 @@ CREATE TABLE `User` (
 CREATE TABLE `Product` (
 	`product_id` INT(10) NOT NULL AUTO_INCREMENT,
 	`name` varchar(100) NOT NULL,
+	`brand` varchar(100) NOT NULL,
 	`description` TEXT,
 	`price` DECIMAL(10) NOT NULL,
 	`cost` DECIMAL(10) NOT NULL,
@@ -62,28 +63,28 @@ INSERT INTO `User` (`user_id`, `first_name`, `last_name`, `email`, `address`, `c
 (3, 'Anna', 'Michailidou', 'mich_anna@gmail.com', 'Ioanninon 7', 'Patra', '6944467678'),
 (4, 'Anja', 'Bugel', 'bugelanja@gmail.com', 'Zalogou 77', 'Thessaloniki', '6977788222');
 
-INSERT INTO `Product` (`product_id`, `name`, `description`, `price`, `cost`, `stock`, `size`, `category`) VALUES
+INSERT INTO `Product` (`product_id`, `name`, `brand`, `description`, `price`, `cost`, `stock`, `size`, `category`) VALUES
 (1, 'Nike Jockey Hat', 'Sportswear H86 Nk Metal Swoosh', '20', '8', 50, 'N/A', 'Hats'),
 (2, 'Jordan Boy`s Ele Elite Jacquard Snapback Cap', 'Metal JORDAN jumpman flight logo on front of hat. All-over embroidered elephant print on base and brim. Adjustable strap on back of hat for ultimate comfort and performance.', '35', '15', 15, 'N/A', 'Hats'),
-(NULL, 'Champion Mens T-Shirt', 'Classic Script, 100% Cotton', '15', '6.5', '10', 'Small', 'T-Shirts'),
-(NULL, 'Champion Mens T-Shirt', 'Classic Script, 100% Cotton', '15', '6.5', '8', 'Medium', 'T-Shirts'),
-(NULL, 'Champion Mens T-Shirt', 'Classic Script, 100% Cotton', '15', '6.5', '10', 'Large', 'T-Shirts'),
-(NULL, 'Champion Mens T-Shirt', 'Classic Script, 100% Cotton', '15', '6.5', '5', 'X-Large', 'T-Shirts'),
-(NULL, 'Adidas Originals Men`s 3-Stripes T-Shirt', 'Men`s tee for casual wear. Crewneck for comfortable fit', '25', '12', '25', 'Small', 'T-Shirts'),
-(NULL, 'Adidas Originals Men`s 3-Stripes T-Shirt', 'Men`s tee for casual wear. Crewneck for comfortable fit', '25', '12', '20', 'Medium', 'T-Shirts'),
-(NULL, 'Adidas Originals Men`s 3-Stripes T-Shirt', 'Men`s tee for casual wear. Crewneck for comfortable fit', '25', '12', '9', 'Large', 'T-Shirts'),
-(NULL, 'Adidas Originals Men`s 3-Stripes T-Shirt', 'Men`s tee for casual wear. Crewneck for comfortable fit', '25', '12', '10', 'X-Large', 'T-Shirts'),
-(NULL, 'Under Armour Men`s Launch Stretch Woven 7-inch Shorts', 'New encased elastic waistband with internal drawcord', '30', '15', '20', 'Small', 'Shorts'),
-(NULL, 'Under Armour Men`s Launch Stretch Woven 7-inch Shorts', 'New encased elastic waistband with internal drawcord', '30', '15', '25', 'Medium', 'Shorts'),
-(NULL, 'Under Armour Men`s Launch Stretch Woven 7-inch Shorts', 'New encased elastic waistband with internal drawcord', '30', '15', '14', 'Large', 'Shorts'),
-(NULL, 'Under Armour Men`s Launch Stretch Woven 7-inch Shorts', 'New encased elastic waistband with internal drawcord', '30', '15', '10', 'X-Large', 'Shorts'),
-(NULL, 'Nike Women`s Stroke Running Shoe', 'Rubber sole\r\nRunning Shoes\r\nLightweight and padded design\r\nSupport and cushioning', '85', '42', '5', '37', 'Shoes'),
-(NULL, 'Nike Women`s Stroke Running Shoe', 'Rubber sole\r\nRunning Shoes\r\nLightweight and padded design\r\nSupport and cushioning', '85', '42', '5', '38', 'Shoes'),
-(NULL, 'Nike Women`s Stroke Running Shoe', 'Rubber sole\r\nRunning Shoes\r\nLightweight and padded design\r\nSupport and cushioning', '85', '42', '5', '39', 'Shoes'),
-(NULL, 'Nike Women`s Stroke Running Shoe', 'Rubber sole\r\nRunning Shoes\r\nLightweight and padded design\r\nSupport and cushioning', '85', '42', '5', '40', 'Shoes'),
-(NULL, 'Nike Women`s Stroke Running Shoe', 'Rubber sole\r\nRunning Shoes\r\nLightweight and padded design\r\nSupport and cushioning', '85', '42', '5', '41', 'Shoes'),
-(NULL, 'NordicTrack T Series Treadmills', 'SMART-Response Motor for effective speed, interval, and endurance training; 20” x 55” tread belt offers plenty of leg and elbow space as you run; FlexSelect deck cushioning protects your joints', '1899', '1100', '3', 'N/A', 'Equipment'),
-(NULL, 'Cap Barbell 150-Pound Dumbbell Set with Rack', 'SET INCLUDES – A pair of 5-pound, 10-pound, 15-pound, 20-pound, and 25-pound rubber hex dumbbells with a black A-frame dumbbell rack to store the weights.', '150', '60', 10, 'N/A', 'Equipment')
+(NULL, 'Champion Mens T-Shirt', 'Champion',  'Classic Script, 100% Cotton', '15', '6.5', '10', 'Small', 'T-Shirts'),
+(NULL, 'Champion Mens T-Shirt', 'Champion', 'Classic Script, 100% Cotton', '15', '6.5', '8', 'Medium', 'T-Shirts'),
+(NULL, 'Champion Mens T-Shirt', 'Champion', 'Classic Script, 100% Cotton', '15', '6.5', '10', 'Large', 'T-Shirts'),
+(NULL, 'Champion Mens T-Shirt', 'Champion', 'Classic Script, 100% Cotton', '15', '6.5', '5', 'X-Large', 'T-Shirts'),
+(NULL, 'Adidas Originals Men`s 3-Stripes T-Shirt', 'Adidas', 'Men`s tee for casual wear. Crewneck for comfortable fit', '25', '12', '25', 'Small', 'T-Shirts'),
+(NULL, 'Adidas Originals Men`s 3-Stripes T-Shirt', 'Adidas', 'Men`s tee for casual wear. Crewneck for comfortable fit', '25', '12', '20', 'Medium', 'T-Shirts'),
+(NULL, 'Adidas Originals Men`s 3-Stripes T-Shirt', 'Adidas', 'Men`s tee for casual wear. Crewneck for comfortable fit', '25', '12', '9', 'Large', 'T-Shirts'),
+(NULL, 'Adidas Originals Men`s 3-Stripes T-Shirt', 'Adidas', 'Men`s tee for casual wear. Crewneck for comfortable fit', '25', '12', '10', 'X-Large', 'T-Shirts'),
+(NULL, 'Under Armour Men`s Launch Stretch Woven 7-inch Shorts', 'Under Armour', 'New encased elastic waistband with internal drawcord', '30', '15', '20', 'Small', 'Shorts'),
+(NULL, 'Under Armour Men`s Launch Stretch Woven 7-inch Shorts', 'Under Armour', 'New encased elastic waistband with internal drawcord', '30', '15', '25', 'Medium', 'Shorts'),
+(NULL, 'Under Armour Men`s Launch Stretch Woven 7-inch Shorts', 'Under Armour', 'New encased elastic waistband with internal drawcord', '30', '15', '14', 'Large', 'Shorts'),
+(NULL, 'Under Armour Men`s Launch Stretch Woven 7-inch Shorts', 'Under Armour', 'New encased elastic waistband with internal drawcord', '30', '15', '10', 'X-Large', 'Shorts'),
+(NULL, 'Nike Women`s Stroke Running Shoe', 'Nike', 'Rubber sole\r\nRunning Shoes\r\nLightweight and padded design\r\nSupport and cushioning', '85', '42', '5', '37', 'Shoes'),
+(NULL, 'Nike Women`s Stroke Running Shoe', 'Nike', 'Rubber sole\r\nRunning Shoes\r\nLightweight and padded design\r\nSupport and cushioning', '85', '42', '5', '38', 'Shoes'),
+(NULL, 'Nike Women`s Stroke Running Shoe', 'Nike', 'Rubber sole\r\nRunning Shoes\r\nLightweight and padded design\r\nSupport and cushioning', '85', '42', '5', '39', 'Shoes'),
+(NULL, 'Nike Women`s Stroke Running Shoe', 'Nike', 'Rubber sole\r\nRunning Shoes\r\nLightweight and padded design\r\nSupport and cushioning', '85', '42', '5', '40', 'Shoes'),
+(NULL, 'Nike Women`s Stroke Running Shoe', 'Nike', 'Rubber sole\r\nRunning Shoes\r\nLightweight and padded design\r\nSupport and cushioning', '85', '42', '5', '41', 'Shoes'),
+(NULL, 'NordicTrack T Series Treadmills', 'NordicTrack', 'SMART-Response Motor for effective speed, interval, and endurance training; 20” x 55” tread belt offers plenty of leg and elbow space as you run; FlexSelect deck cushioning protects your joints', '1899', '1100', '3', 'N/A', 'Equipment'),
+(NULL, 'Cap Barbell 150-Pound Dumbbell Set with Rack',  'Cap', 'SET INCLUDES – A pair of 5-pound, 10-pound, 15-pound, 20-pound, and 25-pound rubber hex dumbbells with a black A-frame dumbbell rack to store the weights.', '150', '60', 10, 'N/A', 'Equipment')
 ;
 
 
