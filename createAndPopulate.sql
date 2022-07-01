@@ -64,8 +64,8 @@ INSERT INTO `User` (`user_id`, `first_name`, `last_name`, `email`, `address`, `c
 (4, 'Anja', 'Bugel', 'bugelanja@gmail.com', 'Zalogou 77', 'Thessaloniki', '6977788222');
 
 INSERT INTO `Product` (`product_id`, `name`, `brand`, `description`, `price`, `cost`, `stock`, `size`, `category`) VALUES
-(1, 'Nike Jockey Hat', 'Sportswear H86 Nk Metal Swoosh', '20', '8', 50, 'N/A', 'Hats'),
-(2, 'Jordan Boy`s Ele Elite Jacquard Snapback Cap', 'Metal JORDAN jumpman flight logo on front of hat. All-over embroidered elephant print on base and brim. Adjustable strap on back of hat for ultimate comfort and performance.', '35', '15', 15, 'N/A', 'Hats'),
+(1, 'Nike Jockey Hat', 'Nike', 'Sportswear H86 Nk Metal Swoosh', '20', '8', 50, 'N/A', 'Hats'),
+(2, 'Jordan Boy`s Ele Elite Jacquard Snapback Cap', 'Jordan', 'Metal JORDAN jumpman flight logo on front of hat. All-over embroidered elephant print on base and brim. Adjustable strap on back of hat for ultimate comfort and performance.', '35', '15', 15, 'N/A', 'Hats'),
 (NULL, 'Champion Mens T-Shirt', 'Champion',  'Classic Script, 100% Cotton', '15', '6.5', '10', 'Small', 'T-Shirts'),
 (NULL, 'Champion Mens T-Shirt', 'Champion', 'Classic Script, 100% Cotton', '15', '6.5', '8', 'Medium', 'T-Shirts'),
 (NULL, 'Champion Mens T-Shirt', 'Champion', 'Classic Script, 100% Cotton', '15', '6.5', '10', 'Large', 'T-Shirts'),
@@ -84,7 +84,4 @@ INSERT INTO `Product` (`product_id`, `name`, `brand`, `description`, `price`, `c
 (NULL, 'Nike Women`s Stroke Running Shoe', 'Nike', 'Rubber sole\r\nRunning Shoes\r\nLightweight and padded design\r\nSupport and cushioning', '85', '42', '5', '40', 'Shoes'),
 (NULL, 'Nike Women`s Stroke Running Shoe', 'Nike', 'Rubber sole\r\nRunning Shoes\r\nLightweight and padded design\r\nSupport and cushioning', '85', '42', '5', '41', 'Shoes'),
 (NULL, 'NordicTrack T Series Treadmills', 'NordicTrack', 'SMART-Response Motor for effective speed, interval, and endurance training; 20” x 55” tread belt offers plenty of leg and elbow space as you run; FlexSelect deck cushioning protects your joints', '1899', '1100', '3', 'N/A', 'Equipment'),
-(NULL, 'Cap Barbell 150-Pound Dumbbell Set with Rack',  'Cap', 'SET INCLUDES – A pair of 5-pound, 10-pound, 15-pound, 20-pound, and 25-pound rubber hex dumbbells with a black A-frame dumbbell rack to store the weights.', '150', '60', 10, 'N/A', 'Equipment')
-;
-
-
+(NULL, 'Cap Barbell 150-Pound Dumbbell Set with Rack',  'Cap', 'SET INCLUDES – A pair of 5-pound, 10-pound, 15-pound, 20-pound, and 25-pound rubber hex dumbbells with a black A-frame dumbbell rack to store the weights.', '150', '60', 10, 'N/A', 'Equipment');
