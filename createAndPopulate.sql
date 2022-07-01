@@ -85,3 +85,39 @@ INSERT INTO `Product` (`product_id`, `name`, `brand`, `description`, `price`, `c
 (NULL, 'Nike Women`s Stroke Running Shoe', 'Nike', 'Rubber sole\r\nRunning Shoes\r\nLightweight and padded design\r\nSupport and cushioning', '85', '42', '5', '41', 'Shoes'),
 (NULL, 'NordicTrack T Series Treadmills', 'NordicTrack', 'SMART-Response Motor for effective speed, interval, and endurance training; 20” x 55” tread belt offers plenty of leg and elbow space as you run; FlexSelect deck cushioning protects your joints', '1899', '1100', '3', 'N/A', 'Equipment'),
 (NULL, 'Cap Barbell 150-Pound Dumbbell Set with Rack',  'Cap', 'SET INCLUDES – A pair of 5-pound, 10-pound, 15-pound, 20-pound, and 25-pound rubber hex dumbbells with a black A-frame dumbbell rack to store the weights.', '150', '60', 10, 'N/A', 'Equipment');
+
+INSERT INTO `Order` (`user_id`, `order_id`, `date`) VALUES 
+('1', NULL, '2022-05-17 16:10:11'), 
+('1', NULL, '2022-06-19 13:45:18'), 
+('1', NULL, '2022-07-01 18:06:31'), 
+('2', NULL, '2022-06-17 12:52:31'), 
+('3', NULL, '2022-06-06 15:27:31'), 
+('4', NULL, '2022-05-28 15:22:31'), 
+('4', NULL, '2022-07-01 03:16:31');
+
+INSERT INTO `Order_item` (`product_id`, `order_id`, `quantity`) VALUES 
+('1', '1', '1'), 
+('13', '1', '2'), 
+('5', '1', '1'),
+('2', '2', '1'),
+('21', '2', '1'),
+('20', '3', '1'),
+('21', '4', '1'),
+('18', '5', '1'),
+('1', '5', '2'),
+('13', '5', '1'),
+('16', '6', '1'),
+('18', '6', '1'),
+('1', '6', '1'),
+('1', '7', '1'),
+('3', '7', '1');
+
+
+INSERT INTO `Transaction` (`transaction_id`, `order_id`, `amount`) VALUES 
+('1', '1', '95'),
+('2', '6', '190'),
+('3', '5', '155'),
+('4', '4', '150'),
+('5', '2', '185'),
+('6', '7', '35'),
+('7', '3', '1899'); 
