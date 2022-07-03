@@ -41,7 +41,7 @@ async def write_data(Product: Product):
         size= Product.size,
         category= Product.category
     ))
-    return conn.execute(Products.select().where(Products.c.product_id==(Products.select(max(Products.c.product_id)))))
+    return conn.execute(Products.select()).fetchall()
 
 @product.put("/{id}")
 async def update_data(id: int, Product: Product):
@@ -55,8 +55,8 @@ async def update_data(id: int, Product: Product):
         size= Product.size,
         category= Product.category
     ).where(Products.c.product_id==id))
-    return conn.execute(Products.select()).fetchall()
-
+    return conn.execute(Products.select().where(Products.c.product_id==id)).fetchall()
+    
 @product.delete("/{id}")
 async def delete_data(id: int):
     conn.execute(Products.delete().where(Products.c.product_id==id))
