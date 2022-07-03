@@ -2,18 +2,18 @@
 DROP TABLE IF EXISTS `Transaction`;
 DROP TABLE IF EXISTS `Order_item`;
 DROP TABLE IF EXISTS `Order`;
-DROP TABLE IF EXISTS `User`;
+DROP TABLE IF EXISTS `Customer`;
 DROP TABLE IF EXISTS `Product`;
 
-CREATE TABLE `User` (
-	`user_id` INT(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `Customer` (
+	`customer_id` INT(10) NOT NULL AUTO_INCREMENT,
 	`first_name` varchar(30) NOT NULL,
 	`last_name` varchar(50) NOT NULL,
 	`email` varchar(100) NOT NULL UNIQUE,
 	`address` varchar(200) NOT NULL,
 	`city` varchar(100) NOT NULL,
 	`telephone` varchar(10) NOT NULL,
-	PRIMARY KEY (`user_id`)
+	PRIMARY KEY (`customer_id`)
 );
 
 CREATE TABLE `Product` (
@@ -30,11 +30,11 @@ CREATE TABLE `Product` (
 );
 
 CREATE TABLE `Order` (
-	`user_id` INT(10) NOT NULL,
-	`order_id` INT(10) NOT NULL AUTO_INCREMENT,
+    `order_id` INT(10) NOT NULL AUTO_INCREMENT,
+	`customer_id` INT(10) NOT NULL,
 	`date` DATETIME NOT NULL,
 	PRIMARY KEY (`order_id`),
-	FOREIGN KEY (`user_id`) REFERENCES `User`(`user_id`) ON DELETE CASCADE
+	FOREIGN KEY (`customer_id`) REFERENCES `Customer`(`customer_id`) ON DELETE CASCADE
 );
 
 CREATE TABLE `Order_item` (
@@ -57,7 +57,7 @@ CREATE TABLE `Transaction` (
 
 /*POPULATE */
 
-INSERT INTO `User` (`user_id`, `first_name`, `last_name`, `email`, `address`, `city`, `telephone`) VALUES
+INSERT INTO `Customer` (`customer_id`, `first_name`, `last_name`, `email`, `address`, `city`, `telephone`) VALUES
 (1, 'Giorgos', 'Dimitriadis', 'dimitriadisg@gmail.com', 'Michalakopoulou 123', 'Athens', '6913141567'),
 (2, 'John', 'Mayer', 'mayerjohn@gmail.com', 'Patreos 43', 'Patra', '6988866666'),
 (3, 'Anna', 'Michailidou', 'mich_anna@gmail.com', 'Ioanninon 7', 'Patra', '6944467678'),
@@ -86,14 +86,14 @@ INSERT INTO `Product` (`product_id`, `name`, `brand`, `description`, `price`, `c
 (NULL, 'NordicTrack T Series Treadmills', 'NordicTrack', 'SMART-Response Motor for effective speed, interval, and endurance training; 20” x 55” tread belt offers plenty of leg and elbow space as you run; FlexSelect deck cushioning protects your joints', '1899', '1100', '3', 'N/A', 'Equipment'),
 (NULL, 'Cap Barbell 150-Pound Dumbbell Set with Rack',  'Cap', 'SET INCLUDES – A pair of 5-pound, 10-pound, 15-pound, 20-pound, and 25-pound rubber hex dumbbells with a black A-frame dumbbell rack to store the weights.', '150', '60', 10, 'N/A', 'Equipment');
 
-INSERT INTO `Order` (`user_id`, `order_id`, `date`) VALUES 
-('1', NULL, '2022-05-17 16:10:11'), 
-('1', NULL, '2022-06-19 13:45:18'), 
-('1', NULL, '2022-07-01 18:06:31'), 
-('2', NULL, '2022-06-17 12:52:31'), 
-('3', NULL, '2022-06-06 15:27:31'), 
-('4', NULL, '2022-05-28 15:22:31'), 
-('4', NULL, '2022-07-01 03:16:31');
+INSERT INTO `Order` (`order_id`, `customer_id`, `date`) VALUES 
+(NULL, '1', '2022-05-17 16:10:11'), 
+(NULL, '1', '2022-06-19 13:45:18'), 
+(NULL, '1', '2022-07-01 18:06:31'), 
+(NULL, '2', '2022-06-17 12:52:31'), 
+(NULL, '3', '2022-06-06 15:27:31'), 
+(NULL, '4', '2022-05-28 15:22:31'), 
+(NULL, '4', '2022-07-01 03:16:31');
 
 INSERT INTO `Order_item` (`product_id`, `order_id`, `quantity`) VALUES 
 ('1', '1', '1'), 
