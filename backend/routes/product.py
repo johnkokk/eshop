@@ -18,7 +18,7 @@ async def read_data():
 
 @product.get("/product/{id}")
 async def read_data(id: int):
-    return conn.execute(Products.select().where(Products.c.product_id==id)).fetchall()
+    return conn.execute(Products.select().where(Products.c.product_id==id))
 
 @product.get("/productsByBrand/{brand}")
 async def read_data(brand: str):
@@ -55,8 +55,8 @@ async def update_data(id: int, Product: Product):
         size= Product.size,
         category= Product.category
     ).where(Products.c.product_id==id))
-    return conn.execute(Products.select().where(Products.c.product_id==id)).fetchall()
-    
+    return conn.execute(Products.select().where(Products.c.product_id==id))
+
 @product.delete("/{id}")
 async def delete_data(id: int):
     conn.execute(Products.delete().where(Products.c.product_id==id))
