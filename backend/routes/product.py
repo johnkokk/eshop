@@ -2,62 +2,87 @@ from fastapi import APIRouter
 from database.db import conn
 from models.index import Products
 from schemas.index import Product
-
-
+from schemas.index import Error
+from fastapi.responses import JSONResponse
 
 product = APIRouter()
 
-
-@product.get("/")
-async def read_data():
-    return {"msg": "Hello"}
 
 @product.get("/products")
 async def read_data():
     return conn.execute(Products.select()).fetchall()
 
+
 @product.get("/product/{id}")
 async def read_data(id: int):
-    return conn.execute(Products.select().where(Products.c.product_id==id))
+    exists = conn.execute(Products.select().where(Products.c.product_id == id)).scalar()
+    if(id == exists):
+        return conn.execute(Products.select().where(Products.c.product_id==id))
+    else:
+        error=Error(code=404,reason="This product does not exist")
+        return JSONResponse(status_code=404, content={"code": error.code, "reason":error.reason})
+
 
 @product.get("/productsByBrand/{brand}")
 async def read_data(brand: str):
     return conn.execute(Products.select().where(Products.c.brand==brand)).fetchall()
 
+
 @product.get("/productsByCategory/{category}")
 async def read_data(category: str):
     return conn.execute(Products.select().where(Products.c.category==category)).fetchall()
 
-@product.post("/")
+
+@product.post("/product")
 async def write_data(Product: Product):
+    
+    try:
+        conn.execute(Products.insert().values(
+            name= Product.name,
+            brand= Product.brand,
+            description= Product.description,
+            price= Product.price,
+            cost= Product.cost,
+            stock= Product.stock,
+            size= Product.size,
+            category= Product.category
+        ))
+        return Product
+    
+    except Exception:
+        print (Exception)
+        error=Error(code=500, reason="Internal server error")
+        return JSONResponse(status_code=500, content={"code": error.code, "reason":error.reason})
 
-    conn.execute(Products.insert().values(
-        name= Product.name,
-        brand= Product.brand,
-        description= Product.description,
-        price= Product.price,
-        cost= Product.cost,
-        stock= Product.stock,
-        size= Product.size,
-        category= Product.category
-    ))
-    return conn.execute(Products.select()).fetchall()
 
-@product.put("/{id}")
+@product.put("/product/{id}")
 async def update_data(id: int, Product: Product):
-    conn.execute(Products.update().values(
-        name= Product.name,
-        brand= Product.brand,
-        description= Product.description,
-        price= Product.price,
-        cost= Product.cost,
-        stock= Product.stock,
-        size= Product.size,
-        category= Product.category
-    ).where(Products.c.product_id==id))
-    return conn.execute(Products.select().where(Products.c.product_id==id))
+    exists = conn.execute(Products.select().where(Products.c.product_id == id)).scalar()
+    if(id == exists):
+        conn.execute(Products.update().values(
+            name= Product.name,
+            brand= Product.brand,
+            description= Product.description,
+            price= Product.price,
+            cost= Product.cost,
+            stock= Product.stock,
+            size= Product.size,
+            category= Product.category
+        ).where(Products.c.product_id==id))
+        return Product
+    else:
+        error=Error(code=404,reason="This product does not exist")
+        return JSONResponse(status_code=404, content={"code": error.code, "reason":error.reason})
 
-@product.delete("/{id}")
+
+@product.delete("/product/{id}")
 async def delete_data(id: int):
-    conn.execute(Products.delete().where(Products.c.product_id==id))
-    return conn.execute(Products.select()).fetchall()
+    exists = conn.execute(Products.select().where(Products.c.product_id == id)).scalar()
+    if(id == exists):
+        conn.execute(Products.delete().where(Products.c.product_id==id))
+        return conn.execute(Products.select()).fetchall()
+    else:
+        error=Error(code=404,reason="This product does not exist")
+        return JSONResponse(status_code=404, content={"code": error.code, "reason":error.reason})
+    
+    
