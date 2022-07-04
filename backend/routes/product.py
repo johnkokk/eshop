@@ -17,7 +17,7 @@ async def read_data():
 async def read_data(id: int):
     exists = conn.execute(Products.select().where(Products.c.product_id == id)).scalar()
     if(id == exists):
-        return conn.execute(Products.select().where(Products.c.product_id==id))
+        return conn.execute(Products.select().where(Products.c.product_id==id)).fetchone()
     else:
         error=Error(code=404,reason="This product does not exist")
         return JSONResponse(status_code=404, content={"code": error.code, "reason":error.reason})
