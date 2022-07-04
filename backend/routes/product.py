@@ -4,6 +4,7 @@ from models.index import Products
 from schemas.index import Product
 from schemas.index import Error
 from fastapi.responses import JSONResponse
+from sqlalchemy import desc 
 
 product = APIRouter()
 
@@ -17,7 +18,7 @@ async def read_data():
 async def read_data(id: int):
     exists = conn.execute(Products.select().where(Products.c.product_id == id)).scalar()
     if(id == exists):
-        return conn.execute(Products.select().where(Products.c.product_id==id))
+        return conn.execute(Products.select().where(Products.c.product_id==id)).fetchone()
     else:
         error=Error(code=404,reason="This product does not exist")
         return JSONResponse(status_code=404, content={"code": error.code, "reason":error.reason})
@@ -47,7 +48,7 @@ async def write_data(Product: Product):
             size= Product.size,
             category= Product.category
         ))
-        return Product
+        return conn.execute(Products.select().order_by(desc(Products.c.product_id))).fetchone()
     
     except Exception:
         print (Exception)
@@ -69,7 +70,7 @@ async def update_data(id: int, Product: Product):
             size= Product.size,
             category= Product.category
         ).where(Products.c.product_id==id))
-        return Product
+        return conn.execute(Products.select().where(Products.c.product_id == id)).fetchone()
     else:
         error=Error(code=404,reason="This product does not exist")
         return JSONResponse(status_code=404, content={"code": error.code, "reason":error.reason})
@@ -84,5 +85,3 @@ async def delete_data(id: int):
     else:
         error=Error(code=404,reason="This product does not exist")
         return JSONResponse(status_code=404, content={"code": error.code, "reason":error.reason})
-    
-    

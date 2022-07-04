@@ -2,4 +2,7 @@ fastapi
 uvicorn
 sqlalchemy
 pymysql
+pytest
+pytest-cov
+requests
 
