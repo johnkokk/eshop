@@ -166,8 +166,8 @@ Remove a customer (delete method). If successful, response will look like this:
 Get order by order id (get method). Response will look like this:
 ```
 {
-  "order_id": integer
-  "customer_id": integer
+  "order_id": integer,
+  "customer_id": integer,
   "date":	datetime
 }
 ```
@@ -176,8 +176,8 @@ Get order by order id (get method). Response will look like this:
 Get order by customer id (get method). Response will look like this:
 ```
 {
-  "order_id": integer
-  "customer_id": integer
+  "order_id": integer,
+  "customer_id": integer,
   "date":	datetime
 }
 ```
