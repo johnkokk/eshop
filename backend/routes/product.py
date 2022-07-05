@@ -29,6 +29,7 @@ async def read_data(id: int):
         return JSONResponse(status_code=500, content={"code": error.code, "reason":error.reason})
 
 
+
 @product.get("/productsByBrand/{brand}")
 async def read_data(brand: str):
     return conn.execute(Products.select().where(Products.c.brand==brand)).fetchall()
@@ -56,7 +57,6 @@ async def write_data(Product: Product):
         return conn.execute(Products.select().order_by(desc(Products.c.product_id))).fetchone()
     
     except Exception:
-        #print (Exception)
         error=Error(code=500, reason="Internal server error")
         return JSONResponse(status_code=500, content={"code": error.code, "reason":error.reason})
 
