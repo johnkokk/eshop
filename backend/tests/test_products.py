@@ -75,7 +75,9 @@ NotFound = {'code': 404,'reason': 'This product does not exist'}
 def test_NonExistingProductByID():
     response = client.get("/product/0")
     assert response.status_code == 404, response.text
-    # data = response.content
+    
+    #data = response.content
+    #assert type(data) == str
     # assert  data == NotFound
     # NO F*NG IDEA WHATS GOING ON HERE
     # propably data is string? 
