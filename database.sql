@@ -48,7 +48,7 @@ CREATE TABLE `Order_item` (
 
 CREATE TABLE `Transaction` (
 	`transaction_id` INT(10) NOT NULL AUTO_INCREMENT,
-	`order_id` INT(10) NOT NULL,
+	`order_id` INT(10) NOT NULL UNIQUE,
 	`amount` DECIMAL(10) NOT NULL,
 	PRIMARY KEY (`transaction_id`),
 	FOREIGN KEY (`order_id`) REFERENCES `Order`(`order_id`) ON DELETE CASCADE
