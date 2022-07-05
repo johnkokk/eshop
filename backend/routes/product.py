@@ -16,12 +16,17 @@ async def read_data():
 
 @product.get("/product/{id}")
 async def read_data(id: int):
-    exists = conn.execute(Products.select().where(Products.c.product_id == id)).scalar()
-    if(id == exists):
-        return conn.execute(Products.select().where(Products.c.product_id==id)).fetchone()
-    else:
-        error=Error(code=404,reason="This product does not exist")
-        return JSONResponse(status_code=404, content={"code": error.code, "reason":error.reason})
+    try:
+        exists = conn.execute(Products.select().where(Products.c.product_id == id)).scalar()
+        if(id == exists):
+            return conn.execute(Products.select().where(Products.c.product_id==id)).fetchone()
+        else:
+            error=Error(code=404,reason="This product does not exist")
+            return JSONResponse(status_code=404, content={"code": error.code, "reason":error.reason})
+    
+    except Exception:
+        error=Error(code=500, reason="Internal server error")
+        return JSONResponse(status_code=500, content={"code": error.code, "reason":error.reason})
 
 
 @product.get("/productsByBrand/{brand}")
@@ -58,30 +63,41 @@ async def write_data(Product: Product):
 
 @product.put("/product/{id}")
 async def update_data(id: int, Product: Product):
-    exists = conn.execute(Products.select().where(Products.c.product_id == id)).scalar()
-    if(id == exists):
-        conn.execute(Products.update().values(
-            name= Product.name,
-            brand= Product.brand,
-            description= Product.description,
-            price= Product.price,
-            cost= Product.cost,
-            stock= Product.stock,
-            size= Product.size,
-            category= Product.category
-        ).where(Products.c.product_id==id))
-        return conn.execute(Products.select().where(Products.c.product_id == id)).fetchone()
-    else:
-        error=Error(code=404,reason="This product does not exist")
-        return JSONResponse(status_code=404, content={"code": error.code, "reason":error.reason})
-
+    try:
+        exists = conn.execute(Products.select().where(Products.c.product_id == id)).scalar()
+        if(id == exists):
+            conn.execute(Products.update().values(
+                name= Product.name,
+                brand= Product.brand,
+                description= Product.description,
+                price= Product.price,
+                cost= Product.cost,
+                stock= Product.stock,
+                size= Product.size,
+                category= Product.category
+            ).where(Products.c.product_id==id))
+            return conn.execute(Products.select().where(Products.c.product_id == id)).fetchone()
+        else:
+            error=Error(code=404,reason="This product does not exist")
+            return JSONResponse(status_code=404, content={"code": error.code, "reason":error.reason})
+    
+    except Exception:
+        error=Error(code=500, reason="Internal server error")
+        return JSONResponse(status_code=500, content={"code": error.code, "reason":error.reason})
 
 @product.delete("/product/{id}")
 async def delete_data(id: int):
-    exists = conn.execute(Products.select().where(Products.c.product_id == id)).scalar()
-    if(id == exists):
-        conn.execute(Products.delete().where(Products.c.product_id==id))
-        return conn.execute(Products.select()).fetchall()
-    else:
-        error=Error(code=404,reason="This product does not exist")
-        return JSONResponse(status_code=404, content={"code": error.code, "reason":error.reason})
+    
+    try:
+        exists = conn.execute(Products.select().where(Products.c.product_id == id)).scalar()
+        if(id == exists):
+            conn.execute(Products.delete().where(Products.c.product_id==id))
+            #return conn.execute(Products.select()).fetchall()
+            return "Product deleted successfully"
+        else:
+            error=Error(code=404,reason="This product does not exist")
+            return JSONResponse(status_code=404, content={"code": error.code, "reason":error.reason})
+    
+    except Exception:
+        error=Error(code=500, reason="Internal server error")
+        return JSONResponse(status_code=500, content={"code": error.code, "reason":error.reason})

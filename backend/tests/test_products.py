@@ -69,18 +69,15 @@ def test_ExistingProductByID():
     assert data["description"] =="Sportswear H86 Nk Metal Swoosh"
     assert data["size"] == "N/A"
 
-NotFound = {'code': 404,'reason': 'This product does not exist'}
+NotFound = '{"code":404,"reason":"This product does not exist"}'
 
 #testing for non-existing product (product_id=0)
 def test_NonExistingProductByID():
     response = client.get("/product/0")
-    assert response.status_code == 404, response.text
-    
-    #data = response.content
-    #assert type(data) == str
-    # assert  data == NotFound
-    # NO F*NG IDEA WHATS GOING ON HERE
-    # propably data is string? 
+    assert response.status_code == 404, response.text  
+    data = response.content
+    #type(data)
+    assert  data.decode("utf-8") == NotFound 
 
 
 def test_updateExistingProduct():
@@ -113,9 +110,8 @@ def test_updateExistingProduct():
 def test_updateNonExistingProduct():
     response = client.put("/product/0", json=testUpdate)
     assert response.status_code == 404, response.text
-    # data = response.content
-    # assert  data == NotFound
-    # Once again...
+    data = response.content
+    assert  data.decode("utf-8") == NotFound
 
 def test_deleteExistingProduct():
     #creating a test-product
@@ -127,6 +123,7 @@ def test_deleteExistingProduct():
     #delete test-product
     response = client.delete(f"/product/{product_id}")
     assert response.status_code == 200
+    assert response.text == '"Product deleted successfully"'
     response = client.get(f"/product/{product_id}")
     assert response.status_code == 404
 
@@ -135,6 +132,5 @@ def test_deleteExistingProduct():
 def test_deleteNonExistingProduct():
     response = client.delete(f"/product/0")
     assert response.status_code == 404, response.text
-    # data = response.content
-    # assert  data == NotFound
-    # And again...
+    data = response.content
+    assert  data.decode("utf-8") == NotFound
