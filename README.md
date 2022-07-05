@@ -200,4 +200,5 @@ Get list of all transactions (get method)
 
 ## /transactions/totalRevenue (GET)
 Get the amount of total revenue (get method). Response will have to look like this:
+
 ` Total revenue: float `
