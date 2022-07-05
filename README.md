@@ -169,7 +169,7 @@ Get order by order id (get method). Response will look like this:
   "order_id": integer
   "customer_id": integer
   "date":	datetime
- }
+}
 ```
 
 ## /order/{customer id} (GET)
@@ -179,7 +179,7 @@ Get order by customer id (get method). Response will look like this:
   "order_id": integer
   "customer_id": integer
   "date":	datetime
- }
+}
 ```
 
 ## /orders (GET)
@@ -189,10 +189,10 @@ Get list of all orders (get method)
 Get transaction by transaction id (get method). Response will look like this:
 ```
 {
-  "transaction_id": integer
-  "order_id": integer
+  "transaction_id": integer,
+  "order_id": integer,
   "amount":	float
- }
+}
 ```
 
 ## /transactions (GET)
