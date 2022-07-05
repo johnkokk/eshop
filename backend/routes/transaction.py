@@ -5,6 +5,8 @@ from models.index import Transactions
 from schemas.index import Transaction
 from schemas.index import Error
 from fastapi.responses import JSONResponse
+import sqlalchemy as db
+#from sqlalchemy import func
 
 transaction = APIRouter()
 
@@ -21,3 +23,9 @@ async def read_data(transactionId: int):
     else:
         error=Error(code=404,reason="This transaction id does not exist")
         return JSONResponse(status_code=404, content={"code": error.code, "reason":error.reason}) 
+
+@transaction.get("/totalRevenue")
+async def read_data():
+    query = db.select(db.func.sum(Transactions.c.amount))
+    sum = conn.execute(query).scalar()
+    return f"Total Revenue: {sum}"

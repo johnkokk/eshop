@@ -15,17 +15,19 @@ async def read_data():
 
 @order.get("/order/{orderId}")
 async def read_data(orderId: int):
-
-    exists = conn.execute(Orders.select().where(Orders.c.order_id == orderId)).scalar()
-    if(orderId == exists):
-        return conn.execute(Orders.select().where(Orders.c.order_id==orderId)).fetchone()
-    else:
-        error=Error(code=404,reason="This order id does not exist")
-        return JSONResponse(status_code=404, content={"code": error.code, "reason":error.reason})
+    try:
+        exists = conn.execute(Orders.select().where(Orders.c.order_id == orderId)).scalar()
+        if(orderId == exists):
+            return conn.execute(Orders.select().where(Orders.c.order_id==orderId)).fetchone()
+        else:
+            error=Error(code=404,reason="This order id does not exist")
+            return JSONResponse(status_code=404, content={"code": error.code, "reason":error.reason})
+    except Exception:
+        error=Error(code=500, reason="Internal server error")
+        return JSONResponse(status_code=500, content={"code": error.code, "reason":error.reason})
 
 @order.get("/OrderByCustomer/{customerId}")
 async def read_data(customerId: str):
-
     return conn.execute(Orders.select().where(Orders.c.customer_id==customerId)).fetchall()
 
 

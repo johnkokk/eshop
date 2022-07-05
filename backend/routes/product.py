@@ -50,7 +50,6 @@ async def write_data(Product: Product):
         return Product
     
     except Exception:
-        print (Exception)
         error=Error(code=500, reason="Internal server error")
         return JSONResponse(status_code=500, content={"code": error.code, "reason":error.reason})
 
@@ -80,7 +79,8 @@ async def delete_data(id: int):
     exists = conn.execute(Products.select().where(Products.c.product_id == id)).scalar()
     if(id == exists):
         conn.execute(Products.delete().where(Products.c.product_id==id))
-        return conn.execute(Products.select()).fetchall()
+        #return conn.execute(Products.select()).fetchall()
+        return ("Product deleted successfully.")
     else:
         error=Error(code=404,reason="This product does not exist")
         return JSONResponse(status_code=404, content={"code": error.code, "reason":error.reason})
