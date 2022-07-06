@@ -1,13 +1,11 @@
-from sqlalchemy import Table, Column, Integer, String, Float, Enum, Text, DateTime, ForeignKey
+from sqlalchemy import Table, Column, Integer,ForeignKey
 from database.db import meta
 
 
 Order_Items = Table(
 
-    'Order_Item', meta,
-    Column('order_id', Integer, primary_key=True),
-    Column('product_id', Integer, primary_key=True),
-    Column('quantity', Integer )
+    'Order_item', meta,
+    Column('order_id', Integer, ForeignKey("Order.c.order_id"), primary_key=True),
+    Column('product_id', Integer, ForeignKey("Product.c.product_id"), primary_key=True),
+    Column('quantity', Integer)
 )
-
-# ???? PrimKey ??
