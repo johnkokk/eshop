@@ -1,7 +1,7 @@
 # Sports e-shop
 Simple api for a sports e-shop
 
-## Dependencies
+## Dependencies (installation and running)
 
 
 ## /product/{id} (GET)
@@ -172,7 +172,7 @@ Get order by order id (get method). Response will look like this:
 }
 ```
 
-## /order/{customer id} (GET)
+## /orderByCustomer/{customer id} (GET)
 Get order by customer id (get method). Response will look like this:
 ```
 {
