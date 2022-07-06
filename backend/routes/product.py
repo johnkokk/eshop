@@ -60,35 +60,6 @@ async def write_data(Product: Product):
         error=Error(code=500, reason="Internal server error")
         return JSONResponse(status_code=500, content={"code": error.code, "reason":error.reason})
 
-<<<<<<< HEAD
-    conn.execute(Products.insert().values(
-        name= Product.name,
-        brand= Product.brand,
-        description= Product.description,
-        price= Product.price,
-        cost= Product.cost,
-        stock= Product.stock,
-        size= Product.size,
-        category= Product.category
-    ))
-    return conn.execute(Products.select()).fetchall()
-    # return conn.execute(Products.select().where(Products.c.product_id==max(id)).fetchall()
-    # return conn.execute(Products.select()).fetchone()
-
-@product.put("/{id}")
-async def update_data(id: int, Product: Product):
-    conn.execute(Products.update().values(
-        name= Product.name,
-        brand= Product.brand,
-        description= Product.description,
-        price= Product.price,
-        cost= Product.cost,
-        stock= Product.stock,
-        size= Product.size,
-        category= Product.category
-    ).where(Products.c.product_id==id))
-    return conn.execute(Products.select().where(Products.c.product_id==id)).fetchall()
-=======
 
 @product.put("/product/{id}")
 async def update_data(id: int, Product: Product):
@@ -113,7 +84,7 @@ async def update_data(id: int, Product: Product):
     except Exception:
         error=Error(code=500, reason="Internal server error")
         return JSONResponse(status_code=500, content={"code": error.code, "reason":error.reason})
->>>>>>> 1b568663352bf673ad07357e8be1ca5180172361
+        
 
 @product.delete("/product/{id}")
 async def delete_data(id: int):
