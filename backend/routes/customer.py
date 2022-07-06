@@ -5,6 +5,7 @@ from schemas.index import Customer
 from schemas.index import Error
 from fastapi.responses import JSONResponse
 from sqlalchemy import desc
+import sqlalchemy as db
 
 customer = APIRouter()
 
@@ -28,7 +29,7 @@ async def read_data(id: int):
         return JSONResponse(status_code=500, content={"code": error.code, "reason":error.reason})
 
 
-@customer.get("/CustomersByLastName/{lastname}")
+@customer.get("/customersByLastName/{lastname}")
 async def read_data(lastname: str):
 
     return conn.execute(Customers.select().where(Customers.c.last_name==lastname)).fetchall()
@@ -36,15 +37,13 @@ async def read_data(lastname: str):
 @customer.post("/customer")
 async def write_data(Customer: Customer):
     
-    # exists = conn.execute(Customers.select()).fetchall()
-    # return exists
-    # if(Customer.email in exists):
-    #     error=Error(code=409, reason="This email already exists")
-    #     return JSONResponse(status_code=409, content={"code": error.code, "reason":error.reason})
-    
-# NOTE TO ME: YOU HAVE TO CHECK IF EMAIL ALREADY EXISTS
-
     try:
+        exists = conn.execute(db.select([Customers.c.email])).fetchall()
+        for i in range(0, len(exists)):
+            if(Customer.email == exists[i][0]):
+                error=Error(code=409, reason="This email already exists")
+                return JSONResponse(status_code=409, content={"code": error.code, "reason":error.reason})
+    
         conn.execute(Customers.insert().values(
             first_name = Customer.first_name,
             last_name = Customer.last_name,

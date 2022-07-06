@@ -6,9 +6,6 @@ Orders = Table(
 
     'Order', meta,
     Column('order_id', Integer, primary_key=True),
-    Column('customer_id', Integer),
+    Column('customer_id', Integer, ForeignKey("Customer.c.customer_id")),
     Column('date', DateTime )
 )
-
-# ?????????????????????????
-

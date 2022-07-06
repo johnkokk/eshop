@@ -84,6 +84,7 @@ async def update_data(id: int, Product: Product):
     except Exception:
         error=Error(code=500, reason="Internal server error")
         return JSONResponse(status_code=500, content={"code": error.code, "reason":error.reason})
+        
 
 @product.delete("/product/{id}")
 async def delete_data(id: int):
