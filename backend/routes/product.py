@@ -102,3 +102,15 @@ async def delete_data(id: int):
     except Exception:
         error=Error(code=500, reason="Internal server error")
         return JSONResponse(status_code=500, content={"code": error.code, "reason":error.reason})
+
+
+@product.get("/stockAlert")
+async def read_data():
+
+    try:
+        query = 'SELECT product_id, cost, stock FROM `Product` WHERE stock <= 5 ORDER BY stock ASC'
+        return conn.execute(query).fetchall()
+        
+    except Exception:
+        error=Error(code=500, reason="Internal server error")
+        return JSONResponse(status_code=500, content={"code": error.code, "reason":error.reason})

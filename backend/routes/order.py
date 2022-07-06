@@ -73,7 +73,7 @@ async def update_data(orderId: int, Order: Order):
             return conn.execute(Orders.select().where(Orders.c.order_id == orderId)).fetchone()
         
         else:
-            error=Error(code=404,reason="This Order id does not exist")
+            error=Error(code=404,reason="This order id does not exist")
             return JSONResponse(status_code=404, content={"code": error.code, "reason":error.reason})
     
     except Exception:
@@ -90,7 +90,7 @@ async def delete_data(orderId: int):
             # return conn.execute(Orders.select()).fetchall()
             return ("Order deleted successfully.")
         else:
-            error=Error(code=404,reason="This Order does not exist")
+            error=Error(code=404,reason="This order id does not exist")
             return JSONResponse(status_code=404, content={"code": error.code, "reason":error.reason})
 
     except Exception:

@@ -1,0 +1,5 @@
+__pycache__
+virtualenv
+venv
+.pytest_cache
+.coverage

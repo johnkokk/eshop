@@ -2,7 +2,18 @@
 Simple api for a sports e-shop
 
 ## Dependencies (installation and running)
+Before running install requirements
+`pip install -r ./requirements.txt `
 
+Also, a connection to UPatras' Network is required to connect to the database
+
+Running the app from /eshop
+`python3 backend/main.py`
+
+A passkey is requested for the database connection
+Change settings on file backend/database/db.py
+
+The app is Docker-ready
 
 ## /product/{id} (GET)
 Get a product by id (get method). Response will look like this:
@@ -198,7 +209,27 @@ Get transaction by transaction id (get method). Response will look like this:
 ## /transactions (GET)
 Get list of all transactions (get method)
 
-## /transactions/totalRevenue (GET)
+## /totalRevenue (GET)
 Get the amount of total revenue (get method). Response will have to look like this:
 
 ` Total revenue: float `
+
+## /bestSellers (GET)
+Get list of products and the amount sold in descending order (get method). Response will have to look like this:
+
+```
+[{
+    "product_id": integer,
+    "Total Sold": integer
+  }]
+```
+
+## /stockAlert (GET)
+Get list of products with 5 or less (5<=) items in our inventory in ascending order(get method). Response will have to look like this:
+```
+[{
+    "product_id": integer,
+    "cost": integer,
+    "stock": integer
+  }
+```
