@@ -4,19 +4,22 @@ Simple api for a sports e-shop
 ## Dependencies (installation and running)
 Before running install requirements:
 
-`pip install -r ./requirements.txt `
+` pip install -r ./requirements.txt `
 
 Also, a connection to UPatras' Network is required to connect to the database.
 
 Running the app from /eshop:
 
-`python3 backend/main.py`
+` python3 backend/main.py `
 
 The app is listening to port 8000.
 
 A passkey is requested for the database connection.
 
 Change settings on file backend/database/db.py.
+
+Finally, to run the tests (from backend/):
+` python3 -m pytest --cov --vv -s tests/ `
 
 The app is Docker-ready.
 
