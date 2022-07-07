@@ -19,6 +19,7 @@ A passkey is requested for the database connection.
 Change settings on file backend/database/db.py.
 
 Finally, to run the tests (from backend/):
+
 ` python3 -m pytest --cov --vv -s tests/ `
 
 The app is Docker-ready.
