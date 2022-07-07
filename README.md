@@ -16,7 +16,7 @@ Change settings on file backend/database/db.py
 
 The app is Docker-ready
 
-#Documentation
+# Documentation
 While the app, you can also find the docs @ http://localhost:8000/docs
 
 ## /product/{id} (GET)
