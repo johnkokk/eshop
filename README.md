@@ -9,11 +9,15 @@ Also, a connection to UPatras' Network is required to connect to the database
 
 Running the app from /eshop
 `python3 backend/main.py`
+The app is listening to port 8000
 
 A passkey is requested for the database connection
 Change settings on file backend/database/db.py
 
 The app is Docker-ready
+
+#Documentation
+While the app, you can also find the docs @ http://localhost:8000/docs
 
 ## /product/{id} (GET)
 Get a product by id (get method). Response will look like this:
